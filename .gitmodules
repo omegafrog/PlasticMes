@@ -1,0 +1,3 @@
+[submodule "PlasticMesSolution"]
+	path = PlasticMesSolution
+	url = git@github.com:omegafrog/PlasticMesSolution.git
