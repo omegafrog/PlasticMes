@@ -1,3 +1,6 @@
 [submodule "PlasticMesSolution"]
 	path = PlasticMesSolution
 	url = git@github.com:omegafrog/PlasticMesSolution.git
+[submodule "PlasticMes.ModbusSimulator"]
+	path = PlasticMes.ModbusSimulator
+	url = git@github.com:omegafrog/PlasticMes.ModbusSimulator.git

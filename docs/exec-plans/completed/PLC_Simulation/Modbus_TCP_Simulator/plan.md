@@ -71,7 +71,7 @@ domain: PLC Simulation / Modbus TCP Simulator
 - 명령: `dotnet build PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulator.csproj -v minimal`
 - 기대 결과: Modbus library가 경고와 오류 없이 컴파일된다.
 - 실패 시 되돌아갈 설계 포인트: 계약 타입 경계, request/response DTO 방향, 메모리 저장소 인터페이스 분리 방식
-- 명령: `dotnet build PlasticMes.ModbusSimulatorHost/PlasticMes.ModbusSimulatorHost.csproj -v minimal`
+- 명령: `dotnet build PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulatorHost/PlasticMes.ModbusSimulatorHost.csproj -v minimal`
 - 기대 결과: 실행 호스트가 Modbus library를 조립하고 기본 포트와 CSV 인자를 해석할 수 있다.
 - 실패 시 되돌아갈 설계 포인트: 별도 host 프로젝트 유지 여부, 설정 객체 책임, CLI 파싱 범위
 - 명령: `dotnet test PlasticMesTest/PlasticMesTest.csproj -v minimal`
@@ -110,7 +110,7 @@ domain: PLC Simulation / Modbus TCP Simulator
 ## 반영된 프로젝트와 솔루션 연결
 
 - 신규 라이브러리: `PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulator.csproj`
-- 신규 실행 진입점: `PlasticMes.ModbusSimulatorHost/PlasticMes.ModbusSimulatorHost.csproj`
+- 신규 실행 진입점: `PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulatorHost/PlasticMes.ModbusSimulatorHost.csproj`
 - 솔루션 연결: `PlasticMesSolution/PlasticMesSolution.slnx`가 Mitsubishi simulator, Modbus simulator, Modbus host, 테스트 프로젝트를 함께 포함한다.
 - 테스트 참조 확장: `PlasticMesTest/PlasticMesTest.csproj`가 Mitsubishi와 Modbus simulator를 동시에 참조한다.
 
@@ -122,12 +122,12 @@ domain: PLC Simulation / Modbus TCP Simulator
 - `PlasticMes.ModbusSimulator/Adapters/Csv/CsvReplayScenarioLoader.cs`: `time` 첫 컬럼 강제, 헤더 주소 파싱, `0-based offset` 정규화, 시간 역전 및 빈 셀 validation을 담당한다.
 - `PlasticMes.ModbusSimulator/Hosting/RegisterReplayController.cs`: 상대 시간 delay 후 scenario write를 적용하고 replay status를 유지한다.
 - `PlasticMes.ModbusSimulator/Hosting/ModbusSimulatorHost.cs`: `TcpListener` accept loop, connection session count, frame read/decode/handle/encode/write를 담당한다.
-- `PlasticMes.ModbusSimulatorHost/Program.cs`: `--bind`, `--port`, `--unit-id`, `--csv`를 파싱하고 host 종료 시 replay도 함께 정리하는 composition root다.
+- `PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulatorHost/Program.cs`: `--bind`, `--port`, `--unit-id`, `--csv`를 파싱하고 host 종료 시 replay도 함께 정리하는 composition root다.
 
 ## 검증 결과
 
 - 통과: `dotnet build PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulator.csproj -v minimal`
-- 통과: `dotnet build PlasticMes.ModbusSimulatorHost/PlasticMes.ModbusSimulatorHost.csproj -v minimal`
+- 통과: `dotnet build PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulatorHost/PlasticMes.ModbusSimulatorHost.csproj -v minimal`
 - 통과: `dotnet test PlasticMesTest/PlasticMesTest.csproj -v minimal`
 
 ## 남아 있는 확인 사항
@@ -138,7 +138,7 @@ domain: PLC Simulation / Modbus TCP Simulator
 # Output Files
 
 - 계획 대상 신규 프로젝트: `PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulator.csproj`
-- 계획 대상 신규 프로젝트: `PlasticMes.ModbusSimulatorHost/PlasticMes.ModbusSimulatorHost.csproj`
+- 계획 대상 신규 프로젝트: `PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulatorHost/PlasticMes.ModbusSimulatorHost.csproj`
 - 계획 대상 신규 코드: `PlasticMes.ModbusSimulator/Application/*`
 - 계획 대상 신규 코드: `PlasticMes.ModbusSimulator/Contracts/*`
 - 계획 대상 신규 코드: `PlasticMes.ModbusSimulator/Adapters/Tcp/ModbusTcpFrameCodec.cs`
@@ -147,7 +147,7 @@ domain: PLC Simulation / Modbus TCP Simulator
 - 계획 대상 신규 코드: `PlasticMes.ModbusSimulator/Adapters/Csv/CsvReplayScenarioLoader.cs`
 - 계획 대상 신규 코드: `PlasticMes.ModbusSimulator/Hosting/ModbusSimulatorHost.cs`
 - 계획 대상 신규 코드: `PlasticMes.ModbusSimulator/Hosting/RegisterReplayController.cs`
-- 계획 대상 신규 코드: `PlasticMes.ModbusSimulatorHost/Program.cs`
+- 계획 대상 신규 코드: `PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulatorHost/Program.cs`
 - 계획 대상 신규 테스트: `PlasticMesTest/ModbusSimulatorTests.cs`
 - 계획 대상 신규 테스트: `PlasticMesTest/ModbusRegisterReplayTests.cs`
 - 계획 대상 신규 문서: `docs/product-specs/PLC_Simulation/Modbus_TCP_Simulator/*`

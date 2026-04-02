@@ -9,7 +9,7 @@ last_verified: 2026-04-02
 ## 디렉토리 구조
 
 - 구현된 라이브러리는 `PlasticMes.ModbusSimulator/`이고, `Application`, `Contracts`, `Adapters`, `Hosting`으로 분리되어 있다.
-- 실행 진입점은 `PlasticMes.ModbusSimulatorHost/Program.cs`다.
+- 실행 진입점은 `PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulatorHost/Program.cs`다.
 - `PlasticMesSolution/PlasticMesSolution.slnx`는 Mitsubishi simulator, Modbus simulator, Modbus host, 테스트 프로젝트를 함께 로드한다.
 - `PlasticMesTest/PlasticMesTest.csproj`는 Mitsubishi와 Modbus simulator를 동시에 참조한다.
 - 기존 `PlasticMes.MitsubishiSimulator`를 공용화하는 리팩터링은 이번 범위에 포함하지 않는다.
@@ -28,7 +28,7 @@ last_verified: 2026-04-02
 - `PlasticMes.ModbusSimulator/Adapters/Csv/CsvReplayScenarioLoader.cs`: CSV 헤더/값 validation과 replay step 생성
 - `PlasticMes.ModbusSimulator/Hosting/ModbusSimulatorHost.cs`: `TcpListener` 기반 accept loop와 request 처리
 - `PlasticMes.ModbusSimulator/Hosting/RegisterReplayController.cs`: 상대 시간 replay 실행
-- `PlasticMes.ModbusSimulatorHost/Program.cs`: CLI 파싱과 host/replay composition root
+- `PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulatorHost/Program.cs`: CLI 파싱과 host/replay composition root
 
 ## 포트
 
@@ -96,15 +96,15 @@ last_verified: 2026-04-02
 
 ## 실행 방법
 
-- 기본 실행: `dotnet run --project PlasticMes.ModbusSimulatorHost --`
+- 기본 실행: `dotnet run --project PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulatorHost --`
 - 기본값: `--bind 127.0.0.1`, `--port 1502`, `--unit-id 1`
-- CSV replay 포함 실행: `dotnet run --project PlasticMes.ModbusSimulatorHost -- --csv path/to/replay.csv`
-- 전체 인자 예시: `dotnet run --project PlasticMes.ModbusSimulatorHost -- --bind 127.0.0.1 --port 1502 --unit-id 1 --csv path/to/replay.csv`
+- CSV replay 포함 실행: `dotnet run --project PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulatorHost -- --csv path/to/replay.csv`
+- 전체 인자 예시: `dotnet run --project PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulatorHost -- --bind 127.0.0.1 --port 1502 --unit-id 1 --csv path/to/replay.csv`
 
 ## 검증 결과
 
 - 통과: `dotnet build PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulator.csproj -v minimal`
-- 통과: `dotnet build PlasticMes.ModbusSimulatorHost/PlasticMes.ModbusSimulatorHost.csproj -v minimal`
+- 통과: `dotnet build PlasticMes.ModbusSimulator/PlasticMes.ModbusSimulatorHost/PlasticMes.ModbusSimulatorHost.csproj -v minimal`
 - 통과: `dotnet test PlasticMesTest/PlasticMesTest.csproj -v minimal`
 
 ## 테스트 범위
