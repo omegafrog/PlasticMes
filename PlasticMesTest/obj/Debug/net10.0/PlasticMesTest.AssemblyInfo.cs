@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PlasticMesTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+921b6e99e21744756e2c9078f51fd3e7b5a3d6de")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a71e96cdb7ff41653c5197b90ebf82575e45c1f5")]
 [assembly: System.Reflection.AssemblyProductAttribute("PlasticMesTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PlasticMesTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
