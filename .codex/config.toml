@@ -1,0 +1,21 @@
+[agents]
+max_threads = 4
+max_depth = 2
+[agents.planner]
+description="계획 수립용 에이전트"
+config_file = "agents/oracle.toml"
+
+[agents.plan_writer]
+description="계획 문서화용 에이전트"
+config_file = "agents/plan_writer.toml"
+
+[agents.execute_writer]
+description="코드 구현 이후 문서화 에이전트"
+config_file = "agents/execute_writer.toml"
+
+[agents.executor]
+description="구현 에이전트"
+config_file = "agents/executor.toml"
+[agents.closer]
+description="정리 에이전트"
+config_file = "agents/closer.toml"

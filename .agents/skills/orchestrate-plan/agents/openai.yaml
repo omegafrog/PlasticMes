@@ -1,0 +1,4 @@
+interface:
+  display_name: "Orchestrate Plan"
+  short_description: "Clarify scope first, then delegate planning, planning-doc verification, implementation, doc-sync verification, closure, and PR creation through specialist agents"
+  default_prompt: "Use $orchestrate-plan to route this request through clarify-request, oracle, plan-writer, plan-doc-verify, execute, execute-writer, docs-sync-verify, and closer."
